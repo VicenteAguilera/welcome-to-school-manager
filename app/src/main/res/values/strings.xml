@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">TecNM UPN Nuevo Ingreso</string>
+    <string name="n_mero_de_control">Número de control</string>
+    <string name="nuevo_ingreso">Nuevo Ingreso TecNM \n campus Uruapan</string>
+    <string name="cerrar">Cerrar</string>
+    <string name="correo_jefe"><a href="juanandrade@tecuruapan.edu.mx">Google</a></string>
+    <string name="acerca_de">Acerca de</string>
+    <string name="nueva_generacion">Nueva Generación</string>
+    <string name="numero_de_control">Número de control:</string>
+    <string name="nombre">Nombre:</string>
+    <string name="carrera">Carrera:</string>
+    <string name="escanear_qr">Escanear Pase</string>
+    <string name="telefono">Teléfono:</string>
+    <string name="todo">TODO</string>
+    <string name="gestor_central">Gestor central</string>
+    <string name="agregar">Agregar</string>
+    <string name="generar_listas">Generar Listas</string>
+    <string name="actualizar_registros">Actualizar Registros</string>
+    <string name="ingresa_los_datos_al_sistema_n_deben_de_tener_el_siguiente_formato_n_nsin_tel_fono_n">Ingresa los datos al sistema deben de tener el siguiente formato: Sin teléfono: "210400XX","ING. EN SISTEMAS COMPUTACIONALES","NOMPRE POR APELLIDOS","" </string>
+    <string name="ingresa_los_datos_al_sistema_n_deben_de_tener_el_siguiente_formato_n_nsin_tel_fono_n2">Sin teléfono: \n "210400XX","ING. EN SISTEMAS COMPUTACIONALES","NOMBRE POR APELLIDOS(PATERNO MATERNO NOMBRES)","" </string>
+    <string name="ingresa_los_datos_al_sistema_n_deben_de_tener_el_siguiente_formato_n_nsin_tel_fono_n3">Con teléfono: \n "210400XX","ING. EN SISTEMAS COMPUTACIONALES","NOMBRE POR APELLIDOS","TEL 10 Dígitos" \nNOTA: TODOS LOS DATOS CON MAYUSCULAS SIN ACENTOS </string>
+
+</resources>
