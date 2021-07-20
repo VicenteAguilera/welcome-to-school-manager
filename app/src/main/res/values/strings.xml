@@ -16,8 +16,8 @@
     <string name="agregar">Agregar</string>
     <string name="generar_listas">Generar Listas</string>
     <string name="actualizar_registros">Actualizar Registros</string>
-    <string name="ingresa_los_datos_al_sistema_n_deben_de_tener_el_siguiente_formato_n_nsin_tel_fono_n">Ingresa los datos al sistema deben de tener el siguiente formato: Sin teléfono: "210400XX","ING. EN SISTEMAS COMPUTACIONALES","NOMPRE POR APELLIDOS","" </string>
-    <string name="ingresa_los_datos_al_sistema_n_deben_de_tener_el_siguiente_formato_n_nsin_tel_fono_n2">Sin teléfono: \n "210400XX","ING. EN SISTEMAS COMPUTACIONALES","NOMBRE POR APELLIDOS(PATERNO MATERNO NOMBRES)","" </string>
-    <string name="ingresa_los_datos_al_sistema_n_deben_de_tener_el_siguiente_formato_n_nsin_tel_fono_n3">Con teléfono: \n "210400XX","ING. EN SISTEMAS COMPUTACIONALES","NOMBRE POR APELLIDOS","TEL 10 Dígitos" \nNOTA: TODOS LOS DATOS CON MAYUSCULAS SIN ACENTOS </string>
+    <string name="ingresa_los_datos_al_sistema_n_deben_de_tener_el_siguiente_formato_n_nsin_tel_fono_n">Ingresa los datos al sistema deben de tener el siguiente formato:  </string>
+    <string name="ingresa_los_datos_al_sistema_n_deben_de_tener_el_siguiente_formato_n_nsin_tel_fono_n2">Sin teléfono: \n \n\"210400XX\",\"ING. EN SISTEMAS COMPUTACIONALES\",\"NOMBRE POR APELLIDOS(PATERNO MATERNO NOMBRES)\",\"\" </string>
+    <string name="ingresa_los_datos_al_sistema_n_deben_de_tener_el_siguiente_formato_n_nsin_tel_fono_n3">Con teléfono: \n \n\"210400XX\",\"ING. EN SISTEMAS COMPUTACIONALES\",\"NOMBRE POR APELLIDOS\",\"TEL 10 Dígitos\" \nNOTA: TODOS LOS DATOS CON MAYUSCULAS SIN ACENTOS y la carrera debe comenzar con (ING.ESPACIO...) \"ISC. ...\"</string>
 
 </resources>
