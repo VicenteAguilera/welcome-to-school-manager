@@ -52,4 +52,8 @@ dependencies {
     implementation group: 'commons-codec', name: 'commons-codec', version: '1.14'
     // https://mvnrepository.com/artifact/org.apache.commons/commons-crypto
     implementation group: 'org.apache.commons', name: 'commons-crypto', version: '1.0.0'
+
+    //PDFS
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation files('libs/droidText.0.4.jar')
 }
