@@ -13,14 +13,15 @@ public class Alumno {
         this.nombre = nombre;
         this.carrera = carrera;
         this.status = "";
+        this.telefono = telefono;
     }
     public Alumno(String numeroControl, String nombre, String carrera, String telefono, String status) {
         this.numeroControl = numeroControl;
         this.nombre = nombre;
         this.carrera = carrera;
         this.status = status;
+        this.telefono = telefono;
     }
-
 
     public String getNumeroControl() {
         return numeroControl;

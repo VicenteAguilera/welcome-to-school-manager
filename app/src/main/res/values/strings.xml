@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">TecNM UPN Nuevo Ingreso</string>
-    <string name="n_mero_de_control">Número de control</string>
     <string name="nuevo_ingreso">Nuevo Ingreso TecNM \n campus Uruapan</string>
     <string name="cerrar">Cerrar</string>
     <string name="correo_jefe"><a href="juanandrade@tecuruapan.edu.mx">Google</a></string>
@@ -19,5 +18,12 @@
     <string name="ingresa_los_datos_al_sistema_n_deben_de_tener_el_siguiente_formato_n_nsin_tel_fono_n">Ingresa los datos al sistema deben de tener el siguiente formato:  </string>
     <string name="ingresa_los_datos_al_sistema_n_deben_de_tener_el_siguiente_formato_n_nsin_tel_fono_n2">Sin teléfono: \n \n\"210400XX\",\"ING. EN SISTEMAS COMPUTACIONALES\",\"NOMBRE POR APELLIDOS(PATERNO MATERNO NOMBRES)\",\"\" </string>
     <string name="ingresa_los_datos_al_sistema_n_deben_de_tener_el_siguiente_formato_n_nsin_tel_fono_n3">Con teléfono: \n \n\"210400XX\",\"ING. EN SISTEMAS COMPUTACIONALES\",\"NOMBRE POR APELLIDOS\",\"TEL 10 Dígitos\" \nNOTA: TODOS LOS DATOS CON MAYUSCULAS SIN ACENTOS y la carrera debe comenzar con (ING.ESPACIO...) \"ISC. ...\"</string>
+    <string name="n_mero_de_control">Número de control</string>
+    <string name="nombre_completo">Nombre completo</string>
+    <string name="seleccione_una_carrera">Seleccione una carrera</string>
+    <string name="phone">Teléfono</string>
+    <string name="registrar">Registrar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="asistencias">Asistencias</string>
 
 </resources>

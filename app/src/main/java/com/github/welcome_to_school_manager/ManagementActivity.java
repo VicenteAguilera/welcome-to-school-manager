@@ -44,7 +44,9 @@ public class ManagementActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 Toast.makeText(ManagementActivity.this, getResources().getText(R.string.agregar) + "...", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(ManagementActivity.this, NewGenetationActivity.class));
+                Intent intent2 = new Intent(ManagementActivity.this, AddAndUpdateActivity.class);
+                intent2.putExtra("OPERATION", "ADD");
+                startActivity(intent2);
             }
         });
         button_update.setOnClickListener(new View.OnClickListener()
@@ -52,7 +54,9 @@ public class ManagementActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 Toast.makeText(ManagementActivity.this, getResources().getText(R.string.actualizar_registros) + "...", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(ManagementActivity.this, NewGenetationActivity.class));
+                Intent intent2 = new Intent(ManagementActivity.this, AddAndUpdateActivity.class);
+                intent2.putExtra("OPERATION", "UPDATE");
+                startActivity(intent2);
             }
         });
         button_pdf.setOnClickListener(new View.OnClickListener()

@@ -5,7 +5,7 @@ public class StringHelper
 {
     public final static  String REGXTEL = "\"(\\\"\\d{8}\\\",\\\"ING\\.\\s[A-Z\\s]+\\\",\\\"[A-Z,\\s,Ñ]+\\\",\\\"\\d{10}\\\")";
     public final static String REGXNOTEL = "(\\\"\\d{8}\\\",\\\"ING\\.\\s[A-Z\\s]+\\\",\\\"[A-Z,\\s,Ñ]+\\\",\\\"\\\")";
-
+    public final static String CARRERAS[] = {"ING. EN SISTEMAS COMPUTACIONALES", "ING. ADMINISTRACION","ING. ELECTRONICA","ING. CIVIL", "ING. MECATRONICA","ING. MECANICA","ING. INDUSTRIAL", "ING. EN INDUSTRIAS ALIMENTARIAS"};
 
 
 
