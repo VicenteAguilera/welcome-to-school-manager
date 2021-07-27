@@ -14,6 +14,8 @@ import com.github.welcome_to_school_manager.helpers.utility.PdfHelper;
 import com.github.welcome_to_school_manager.repository.FirestoreHelper;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class GenerarListasActivity extends AppCompatActivity implements View.OnClickListener, Registros {
@@ -110,6 +112,12 @@ public class GenerarListasActivity extends AppCompatActivity implements View.OnC
     public void getRegistros(List<Alumno> listaAlumnos) {
         if(listaAlumnos.size() != 0)
         {
+            Collections.sort(listaAlumnos, new Comparator<Alumno>() {
+                @Override
+                public int compare(Alumno alumno1, Alumno alumno2) {
+                    return alumno1.getNombre().compareTo(alumno2.getNombre());
+                }
+            });
             this.listaAlumnos = listaAlumnos;
         }
     }

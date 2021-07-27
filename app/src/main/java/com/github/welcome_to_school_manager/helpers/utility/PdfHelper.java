@@ -1,10 +1,13 @@
 package com.github.welcome_to_school_manager.helpers.utility;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.github.welcome_to_school_manager.GenerarListasActivity;
+import com.github.welcome_to_school_manager.R;
 import com.github.welcome_to_school_manager.helpers.models.Alumno;
 
 import com.lowagie.text.Chunk;
@@ -14,6 +17,7 @@ import com.lowagie.text.Element;
 import com.lowagie.text.Font;
 import com.lowagie.text.FontFactory;
 import com.lowagie.text.HeaderFooter;
+import com.lowagie.text.Image;
 import com.lowagie.text.PageSize;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.Phrase;
@@ -21,10 +25,13 @@ import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
+import java.net.MalformedURLException;
 import java.util.List;
 import java.util.Objects;
 
@@ -70,17 +77,17 @@ public class PdfHelper {
 
     private void dibujarPDF(Document documento, FileOutputStream ficheroPdf, String carrera) {
         try {
-            /*Bitmap bitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.logo_cb);
+            Bitmap bitmap = BitmapFactory.decodeResource(generarListasActivity.getResources(), R.drawable.logo_tec2);
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
             Image imagen = Image.getInstance(stream.toByteArray());
             PdfWriter writer = PdfWriter.getInstance(documento, ficheroPdf);
-            writer.setPageEvent(new WaterMark(imagen));*/
+            writer.setPageEvent(new WaterMark(imagen));
 
-            PdfWriter.getInstance(documento, ficheroPdf);
+            //PdfWriter.getInstance(documento, ficheroPdf);
             //documento.add(new Chunk(""));
 
-            Font fontHeaderFooter = FontFactory.getFont(FontFactory.TIMES_ROMAN, FontFactory.defaultEncoding, FontFactory.defaultEmbedding, 12, Font.BOLD, Color.BLACK);
+            Font fontHeaderFooter = FontFactory.getFont(FontFactory.HELVETICA_BOLD, FontFactory.defaultEncoding, FontFactory.defaultEmbedding, 12, Font.BOLD, Color.BLACK);
             Paragraph paragraphHeader = new Paragraph("TECNOLÓGICO NACIONAL DE MÉXICO\n" +
                     "INSTITUTO TECNOLÓGICO SUPERIOR DE URUAPAN\n\n" +
                     "REGISTRO DE ASISTENCIA NUEVO INGRESO\n" + carrera + "\n", fontHeaderFooter);
@@ -154,6 +161,10 @@ public class PdfHelper {
 
         } catch (DocumentException e) {
             Log.e(ETIQUETA_ERROR.texto, Objects.requireNonNull(e.getMessage()));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         } finally {
             // Cerramos el documento.
             documento.close();
