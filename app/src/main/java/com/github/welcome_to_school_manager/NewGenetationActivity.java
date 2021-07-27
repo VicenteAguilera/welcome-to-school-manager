@@ -125,6 +125,9 @@ public class NewGenetationActivity extends AppCompatActivity implements Invitado
                     if(Pattern.matches(StringHelper.REGXTEL,texto.toUpperCase()) || Pattern.matches(StringHelper.REGXNOTEL,texto.toUpperCase()))
                     {
                         String valores[] = texto.split(",");
+                        for(int k = 0; k<valores.length; k++){
+                            valores[k] = valores[k].substring(1, valores[k].length()-1);
+                        }
                         Alumno alumno = new Alumno(valores[0],valores[1],valores[2],valores[3]);
                         alumnos.add(alumno);
 

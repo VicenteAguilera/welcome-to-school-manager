@@ -25,5 +25,8 @@
     <string name="registrar">Registrar</string>
     <string name="cancelar">Cancelar</string>
     <string name="asistencias">Asistencias</string>
+    <string name="message_pass">Introducir contraseña para acceder a funciones de administrador.</string>
+    <string name="acceder">acceder</string>
+    <string name="pass">Contraseña</string>
 
 </resources>

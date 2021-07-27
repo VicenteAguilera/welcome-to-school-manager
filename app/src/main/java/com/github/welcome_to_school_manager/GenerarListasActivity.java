@@ -3,6 +3,7 @@ package com.github.welcome_to_school_manager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -60,7 +61,8 @@ public class GenerarListasActivity extends AppCompatActivity implements View.OnC
     @Override
     protected void onStart() {
         super.onStart();
-        firestoreHelper.getAllRegisters(this);
+        ProgressDialog dialog = ProgressDialog.show(GenerarListasActivity.this, "", "Cargando datos para pdfs...", true);
+        firestoreHelper.getAllRegisters(this, dialog);
     }
 
     @Override

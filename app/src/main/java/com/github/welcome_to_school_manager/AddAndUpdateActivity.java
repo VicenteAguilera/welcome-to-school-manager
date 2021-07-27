@@ -2,9 +2,7 @@ package com.github.welcome_to_school_manager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -39,7 +37,7 @@ public class AddAndUpdateActivity extends AppCompatActivity implements Invitado 
         textInputLayout_Carrera = findViewById(R.id.textInputLayout_Carrera);
         textInputLayout_telefono = findViewById(R.id.textInputLayout_telefono);
         button_add_update = findViewById(R.id.button_add_update);
-        button_cancelar = findViewById(R.id.button_cancelar);
+        button_cancelar = findViewById(R.id.button_Check);
 
         arrayAdapter_carreras  = new ArrayAdapter<>(AddAndUpdateActivity.this, R.layout.custom_spinner_item, StringHelper.CARRERAS);
         ((AutoCompleteTextView)textInputLayout_Carrera.getEditText()).setAdapter(arrayAdapter_carreras);

@@ -54,7 +54,7 @@ public class PdfHelper {
 
         if (arrayListAlumnos != null) {
             try {
-                file = new File(directory, "/" + NOMBRE_DOCUMENTO.texto + "_" + DateHelper.obtenerFecha() + ".pdf");
+                file = new File(directory, "/" + NOMBRE_DOCUMENTO.texto + "_" + carrera +"_" + DateHelper.obtenerFecha() + ".pdf");
                 Document documento = new Document(PageSize.LETTER.rotate());
                 OutputStream os = generarListasActivity.getContentResolver().openOutputStream(Uri.fromFile(file));
                 dibujarPDF(documento, (FileOutputStream) os, carrera);
@@ -134,21 +134,20 @@ public class PdfHelper {
             TABLA.addCell(cellStatus);
             TABLA.setHeaderRows(1);
 
-            int c = 0;
-            carrera = '"' + carrera + '"';
+            //int c = 0;
             for (int i = 0; i < arrayListAlumnos.size(); i++) {
                 String carreraAux2 = arrayListAlumnos.get(i).getCarrera() + "";
-                Log.e("CAux2", carreraAux2);
-                Log.e("CC", carrera);
+                //Log.e("CAux2", carreraAux2);
+                //Log.e("CC", carrera);
                 if (carrera.equals(carreraAux2)) {
-                    Log.e("Num", c + "");
+                    //Log.e("Num", c + "");
                     TABLA.addCell(arrayListAlumnos.get(i).getNumeroControl() + "");
                     TABLA.addCell(arrayListAlumnos.get(i).getNombre() + "");
                     TABLA.addCell(arrayListAlumnos.get(i).getCarrera() + "");
                     TABLA.addCell(arrayListAlumnos.get(i).getTelefono() + "");
                     TABLA.addCell(arrayListAlumnos.get(i).getStatus() + "");
                 }
-                c++;
+                //c++;
             }
             TABLA.setHorizontalAlignment(Element.ALIGN_CENTER);
             documento.add(TABLA);

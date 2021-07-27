@@ -75,7 +75,7 @@
               android:textSize="20sp" />
 
           <Button
-              android:id="@+id/button_cancelar"
+              android:id="@+id/button_Check"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:layout_marginStart="32dp"

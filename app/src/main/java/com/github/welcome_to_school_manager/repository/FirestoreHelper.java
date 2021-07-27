@@ -43,7 +43,6 @@ public class FirestoreHelper {
     public static final CollectionReference AlumnosCollection = db.collection("alumnos");
     private Alumno alumno;
 
-
     public void getData(String document, final ProgressDialog dialog, final Context context, Invitado invitado, Messages message) {
         dialog.show();
         AlumnosCollection.document(document).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -90,7 +89,7 @@ public class FirestoreHelper {
                 });
     }
 
-    public void getAllRegisters(final Registros registros) {
+    public void getAllRegisters(final Registros registros, ProgressDialog dialog) {
         final List<Alumno> listaAlumnos = new ArrayList<>();
         final Alumno[] alumnos = new Alumno[1];
         AlumnosCollection
@@ -107,26 +106,28 @@ public class FirestoreHelper {
                                 listaAlumnos.add(alumnos[0]);
                             }
                             registros.getRegistros(listaAlumnos);
+                            dialog.dismiss();
                         } else {
+                            dialog.dismiss();
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
                     }
                 });
     }
 
-    public void validAddAlumno(final ProgressDialog dialog, final String num, final String nombre, final String carrera, final String telefono, final Context context){
+    public void validAddAlumno(final ProgressDialog dialog, final String num, final String nombre, final String carrera, final String telefono, final Context context) {
         final Map<String, Object> alumno = new HashMap<>();
         alumno.put("nombre", nombre);
         alumno.put("carrera", carrera);
-        alumno.put("status","");
-        alumno.put("telefono",telefono);
+        alumno.put("status", "");
+        alumno.put("telefono", telefono);
 
         AlumnosCollection.document(num).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if(task.isSuccessful()){
-                    if(task.getResult().exists()){
-                        final AlertDialog.Builder  alertDialogBuilder = new AlertDialog.Builder(context);
+                if (task.isSuccessful()) {
+                    if (task.getResult().exists()) {
+                        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
                         alertDialogBuilder.setCancelable(false);
                         alertDialogBuilder.setTitle("Aviso");
                         alertDialogBuilder.setMessage("El número de control ya existe en la base de datos");
@@ -134,8 +135,7 @@ public class FirestoreHelper {
                         alertDialogBuilder.setPositiveButton("Aceptar",
                                 new DialogInterface.OnClickListener() {
                                     @Override
-                                    public void onClick(DialogInterface alertDialog, int i)
-                                    {
+                                    public void onClick(DialogInterface alertDialog, int i) {
                                         alertDialog.dismiss();
                                     }
                                 }
@@ -143,45 +143,43 @@ public class FirestoreHelper {
 
                         dialog.dismiss();
                         alertDialogBuilder.show();
-                    }else {
+                    } else {
                         addAlumno(num, dialog, alumno, context);
                     }
-                }else {
+                } else {
                     Toast.makeText(context, "Error, verifique su conexión a Internet, si los problemas continuan contacte al administrador", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
-    private void addAlumno(final String num, final ProgressDialog dialog, final Map<String, Object> data, final Context context){
+    private void addAlumno(final String num, final ProgressDialog dialog, final Map<String, Object> data, final Context context) {
         AlumnosCollection.document(num).set(data).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 dialog.dismiss();
-                if(task.isSuccessful()){
-                    final AlertDialog.Builder  alertDialogBuilder = new AlertDialog.Builder(context);
+                if (task.isSuccessful()) {
+                    final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
                     alertDialogBuilder.setTitle("Aviso");
                     alertDialogBuilder.setMessage("Alumno registrado en el banco de datos.");
                     alertDialogBuilder.setPositiveButton("Aceptar",
                             new DialogInterface.OnClickListener() {
                                 @Override
-                                public void onClick(DialogInterface alertDialog, int i)
-                                {
+                                public void onClick(DialogInterface alertDialog, int i) {
                                     alertDialog.cancel();
                                 }
                             }
                     );
 
                     alertDialogBuilder.show();
-                }else {
-                    final AlertDialog.Builder  alertDialogBuilder = new AlertDialog.Builder(context);
+                } else {
+                    final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
                     alertDialogBuilder.setTitle("Aviso");
                     alertDialogBuilder.setMessage("Error al registrar alumno en el banco de datos.");
                     alertDialogBuilder.setPositiveButton("Aceptar",
                             new DialogInterface.OnClickListener() {
                                 @Override
-                                public void onClick(DialogInterface alertDialog, int i)
-                                {
+                                public void onClick(DialogInterface alertDialog, int i) {
                                     alertDialog.cancel();
                                 }
                             }
@@ -192,19 +190,19 @@ public class FirestoreHelper {
         });
     }
 
-    public void getDataAlumno(final Invitado listaAlumno, String num, final ProgressDialog dialog, final Context context){
+    public void getDataAlumno(final Invitado listaAlumno, String num, final ProgressDialog dialog, final Context context) {
         AlumnosCollection.document(num).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 dialog.dismiss();
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
-                    if(Objects.requireNonNull(document).exists()){
-                        Map<String,Object> data = document.getData();
+                    if (Objects.requireNonNull(document).exists()) {
+                        Map<String, Object> data = document.getData();
                         alumno = new Alumno(document.getId(), data.get("nombre").toString(), data.get("carrera").toString(), data.get("telefono").toString());
                         listaAlumno.getAlumno(alumno);
-                    }else {
-                        final AlertDialog.Builder  alertDialogBuilder = new AlertDialog.Builder(context);
+                    } else {
+                        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
                         alertDialogBuilder.setCancelable(false);
                         alertDialogBuilder.setTitle("Aviso");
                         alertDialogBuilder.setMessage("El alumno buscado no existe en la base de datos");
@@ -212,8 +210,7 @@ public class FirestoreHelper {
                         alertDialogBuilder.setPositiveButton("Aceptar",
                                 new DialogInterface.OnClickListener() {
                                     @Override
-                                    public void onClick(DialogInterface alertDialog, int i)
-                                    {
+                                    public void onClick(DialogInterface alertDialog, int i) {
                                         alertDialog.dismiss();
                                     }
                                 }
@@ -225,15 +222,14 @@ public class FirestoreHelper {
                     }
 
 
-                }else {
-                    final AlertDialog.Builder  alertDialogBuilder = new AlertDialog.Builder(context);
+                } else {
+                    final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
                     alertDialogBuilder.setTitle("Aviso");
                     alertDialogBuilder.setMessage("Error, verifique su conexión a Internet, si los problemas continuan contacte al administrador");
                     alertDialogBuilder.setPositiveButton("Aceptar",
                             new DialogInterface.OnClickListener() {
                                 @Override
-                                public void onClick(DialogInterface alertDialog, int i)
-                                {
+                                public void onClick(DialogInterface alertDialog, int i) {
                                     alertDialog.cancel();
                                 }
                             }
@@ -244,10 +240,10 @@ public class FirestoreHelper {
         });
     }
 
-    public void updateDataAlumno(final ProgressDialog dialog, final Context context, final String num, String nombre, String carrera,String telefono){
+    public void updateDataAlumno(final ProgressDialog dialog, final Context context, final String num, String nombre, String carrera, String telefono) {
         final Map<String, Object> data_alumno = new HashMap<>();
-        data_alumno.put("nombre",nombre);
-        data_alumno.put("carrera",carrera);
+        data_alumno.put("nombre", nombre);
+        data_alumno.put("carrera", carrera);
         data_alumno.put("telefono", telefono);
 
         AlumnosCollection.document(num).update(data_alumno)
@@ -256,14 +252,13 @@ public class FirestoreHelper {
                     public void onSuccess(Void unused) {
                         dialog.dismiss();
 
-                        final AlertDialog.Builder  alertDialogBuilder = new AlertDialog.Builder(context);
+                        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
                         alertDialogBuilder.setTitle("Aviso");
                         alertDialogBuilder.setMessage("Se actualizaron los datos del alumno.");
                         alertDialogBuilder.setPositiveButton("Aceptar",
                                 new DialogInterface.OnClickListener() {
                                     @Override
-                                    public void onClick(DialogInterface alertDialog, int i)
-                                    {
+                                    public void onClick(DialogInterface alertDialog, int i) {
                                         alertDialog.cancel();
                                     }
                                 }
@@ -277,14 +272,13 @@ public class FirestoreHelper {
                     public void onFailure(@NonNull Exception e) {
                         dialog.dismiss();
 
-                        final AlertDialog.Builder  alertDialogBuilder = new AlertDialog.Builder(context);
+                        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
                         alertDialogBuilder.setTitle("Aviso");
                         alertDialogBuilder.setMessage("No se actualizaron los datos del alumno, verifica tu conexión a Internet.");
                         alertDialogBuilder.setPositiveButton("Aceptar",
                                 new DialogInterface.OnClickListener() {
                                     @Override
-                                    public void onClick(DialogInterface alertDialog, int i)
-                                    {
+                                    public void onClick(DialogInterface alertDialog, int i) {
                                         alertDialog.cancel();
                                     }
                                 }
