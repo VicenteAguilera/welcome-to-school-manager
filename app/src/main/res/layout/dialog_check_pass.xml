@@ -23,7 +23,7 @@
               android:layout_marginBottom="10dp"
               android:text="@string/message_pass"
               android:textAlignment="inherit"
-              android:textColor="@color/black"
+              android:textColor="@color/colorPrimaryDark"
               android:textSize="20sp"
               android:textStyle="bold" />
 

@@ -84,7 +84,7 @@
               android:layout_marginBottom="32dp"
               android:insetLeft="10dp"
               android:insetRight="10dp"
-              android:text="@string/escanear_qr" />
+              android:text="@string/registrar_asistencia" />
 
       </LinearLayout>
   </ScrollView>

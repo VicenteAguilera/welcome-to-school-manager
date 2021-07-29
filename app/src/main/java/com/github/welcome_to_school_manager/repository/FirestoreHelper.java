@@ -57,7 +57,7 @@ public class FirestoreHelper {
                         invitado.getAlumno(alumno);
                         dialog.dismiss();
                     } else {
-                        message.getMessage("Este alumno no esta en la lista de invitados.");
+                        message.getMessage("Este alumno no esta en la lista de nuevo ingreso.");
                         dialog.dismiss();
                     }
                 }
@@ -75,7 +75,7 @@ public class FirestoreHelper {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        message.getMessage("Invitacion cancelada.");
+                        message.getMessage("Asistencia registrada.");
                         dialog.dismiss();
                     }
                 })
@@ -83,7 +83,7 @@ public class FirestoreHelper {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        message.getMessage("Invitacion no cancelada, verifica tu conexión a Internet.");
+                        message.getMessage("Asistencia no registrada, verifica tu conexión a Internet.");
                         dialog.dismiss();
                     }
                 });

@@ -1,5 +1,6 @@
 package com.github.welcome_to_school_manager.helpers.utility;
 
+import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -152,7 +153,17 @@ public class PdfHelper {
                     TABLA.addCell(arrayListAlumnos.get(i).getNombre() + "");
                     TABLA.addCell(arrayListAlumnos.get(i).getCarrera() + "");
                     TABLA.addCell(arrayListAlumnos.get(i).getTelefono() + "");
-                    TABLA.addCell(arrayListAlumnos.get(i).getStatus() + "");
+
+                    String[] arrayDates = arrayListAlumnos.get(i).getStatus().split(",");
+                    int contador = 0;
+
+                    for (int k=0; k<arrayDates.length; k++){
+                        if(DateHelper.validarFecha(arrayDates[k])){
+                            contador++;
+                        }
+                    }
+
+                    TABLA.addCell(String.valueOf(contador));
                 }
                 //c++;
             }

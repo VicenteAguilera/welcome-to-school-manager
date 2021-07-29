@@ -6,12 +6,12 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +29,6 @@ import com.github.welcome_to_school_manager.helpers.utility.Encriptacion;
 import com.github.welcome_to_school_manager.repository.FirebasePasswords;
 import com.github.welcome_to_school_manager.repository.FirestoreHelper;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -82,16 +81,14 @@ public class MainActivity extends AppCompatActivity implements Invitado, Message
         result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null) {
             if (result.getContents() != null) {
-                ProgressDialog dialog = ProgressDialog.show(MainActivity.this, "", "Buscando invitación...", true);
+                ProgressDialog dialog = ProgressDialog.show(MainActivity.this, "", "Buscando alumno...", true);
                 String values = result.getContents();
-
                 try {
                     final String array[] = new Encriptacion().decryptAE(values).split("\\|");
                     if (array[0].length() == 8 && isNumeric(array[0])) {
                         fireStoreHelper.getData(array[0], dialog, MainActivity.this, MainActivity.this, MainActivity.this);
                     } else {
                         showAlertQRInvalid(dialog);
-
                     }
                 } catch (Exception e) {
                     showAlertQRInvalid(dialog);
@@ -112,7 +109,6 @@ public class MainActivity extends AppCompatActivity implements Invitado, Message
         }
     }
 
-
     private void showAlertQRInvalid(Dialog dialog) {
         dialog.dismiss();
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
@@ -129,20 +125,19 @@ public class MainActivity extends AppCompatActivity implements Invitado, Message
                 }
         );
         alertDialogBuilder.show();
-
     }
 
-    private void showCancelInvitation(Alumno alumno) {
+    private void showRegisterAssistance(Alumno alumno) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
 
-        View view = inflater.inflate(R.layout.dialog_cancel_invitation, null);
+        View view = inflater.inflate(R.layout.dialog_register_assistance, null);
         builder.setView(view);
 
-        final AlertDialog dialogSearchInvitation = builder.create();
-        dialogSearchInvitation.setCancelable(false);
-        Button buttonCancelar = view.findViewById(R.id.button_Check);
+        final AlertDialog dialogSearchAlumno = builder.create();
+        dialogSearchAlumno.setCancelable(false);
+        Button button_Check = view.findViewById(R.id.button_Check);
         /*Button buttonClose = view.findViewById(R.id.buttonClose);*/
 
         TextView textView_Ncontrol = view.findViewById(R.id.textView_Ncontrol);
@@ -156,15 +151,15 @@ public class MainActivity extends AppCompatActivity implements Invitado, Message
         textView_Carrera.setText("Carrera: " + alumno.getCarrera());
         textView_Telefono.setText("Teléfono: " + alumno.getTelefono());
 
-        dialogSearchInvitation.show();
+        dialogSearchAlumno.show();
 
-        buttonCancelar.setOnClickListener(new View.OnClickListener() {
+        button_Check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                alumno.setStatus(alumno.getStatus() + 1);
-                ProgressDialog dialog = ProgressDialog.show(MainActivity.this, "", "Cancelando invitación...", true);
+                alumno.setStatus(alumno.getStatus() + new SimpleDateFormat("dd-MM-yyyy").format(new Date()) + ",");
+                ProgressDialog dialog = ProgressDialog.show(MainActivity.this, "", "Registrando asistencia...", true);
                 fireStoreHelper.UpdateData(dialog, MainActivity.this, alumno, MainActivity.this);
-                dialogSearchInvitation.dismiss();
+                dialogSearchAlumno.dismiss();
             }
         });
 
@@ -178,28 +173,37 @@ public class MainActivity extends AppCompatActivity implements Invitado, Message
 
     @Override
     public void getAlumno(Alumno alumno) {
-       /* if(alumno.getStatus()<2)
-        {
-            showCancelInvitation(alumno);
+        String[] arrayDates = alumno.getStatus().split(",");
+        Log.e("arrayDates", arrayDates.length+"");
+        String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+        Log.e("date", date);
+        boolean flag = false;
+
+        for(int i = 0; i<arrayDates.length; i++){
+            Log.e("arrayDates", arrayDates[i]);
+            if(arrayDates[i].equals(date)){
+                flag = true;
+                break;
+            }
         }
-        else
-        {
-            AlertDialog.Builder  alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+
+        if (!flag) {
+            showRegisterAssistance(alumno);
+        } else {
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
             alertDialogBuilder.setCancelable(false);
-            alertDialogBuilder.setTitle("Invitaciones canceladas.");
-            alertDialogBuilder.setMessage("Los invitados ya están dentro de la ceremonia.");
+            alertDialogBuilder.setTitle("Asistencia registrada.");
+            alertDialogBuilder.setMessage("La asistencia de este alumno ya fue registrada.");
             alertDialogBuilder.setPositiveButton("Aceptar",
                     new DialogInterface.OnClickListener() {
                         @Override
-                        public void onClick(DialogInterface alertDialog, int i)
-                        {
+                        public void onClick(DialogInterface alertDialog, int i) {
                             alertDialog.cancel();
                         }
                     }
             );
             alertDialogBuilder.show();
-        }*/
-
+        }
     }
 
 
@@ -262,12 +266,11 @@ public class MainActivity extends AppCompatActivity implements Invitado, Message
 
     @Override
     public void getPasswordFirebase(String pass) {
-        if(pass.equals(passIntoUser)){
+        if (pass.equals(passIntoUser)) {
             Toast.makeText(MainActivity.this, getResources().getText(R.string.gestor_central) + "...", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, ManagementActivity.class);
             startActivity(intent);
-        }
-        else{
+        } else {
             Snackbar.make(findViewById(android.R.id.content), "Contraseña incorrecta, intenta de nuevo.", Snackbar.LENGTH_LONG).show();
         }
     }
