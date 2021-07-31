@@ -108,7 +108,7 @@ public class PdfHelper {
             Phrase nombreEstudiante = new Phrase("NOMBRE COMPLETO", fontHeaderFooter);
             Phrase carreraAux = new Phrase("CARRERA", fontHeaderFooter);
             Phrase telefono = new Phrase("TELÉFONO", fontHeaderFooter);
-            Phrase status = new Phrase("STATUS", fontHeaderFooter);
+            Phrase status = new Phrase("ASISTENCIAS", fontHeaderFooter);
 
             PdfPCell cellNumControl = new PdfPCell(numControl);
             cellNumControl.setHorizontalAlignment(Element.ALIGN_CENTER);

@@ -117,7 +117,7 @@ public class AddAndUpdateActivity extends AppCompatActivity implements Invitado 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         ProgressDialog progressDialog = ProgressDialog.show(AddAndUpdateActivity.this, "", "Eliminando...", true);
-                        firestoreHelper.validDataDeleteAlumno(progressDialog, AddAndUpdateActivity.this,textInputLayout_numeroControl.getEditText().getText().toString());
+                        firestoreHelper.validDataDeleteAlumno(progressDialog, AddAndUpdateActivity.this,alumno.getNumeroControl());
                         cleanText();
                         estandarUpdate();
                         button_delete.setVisibility(View.GONE);
