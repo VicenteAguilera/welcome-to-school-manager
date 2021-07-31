@@ -122,6 +122,24 @@
 
             <com.google.android.material.button.MaterialButton
 
+                android:id="@+id/button_delete"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="@string/eliminar"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                app:cornerRadius="8dp" />
+
+            <com.google.android.material.button.MaterialButton
+
                 android:id="@+id/button_Check"
                 style="@style/Widget.MaterialComponents.Button"
                 android:layout_width="match_parent"
@@ -133,7 +151,7 @@
                 android:gravity="center"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
-                android:text="@string/cancelar"
+                android:text="@string/salir"
                 android:textColor="#FFFFFF"
                 android:textSize="14sp"
                 app:cornerRadius="8dp" />

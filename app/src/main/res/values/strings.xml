@@ -23,11 +23,12 @@
     <string name="seleccione_una_carrera">Seleccione una carrera</string>
     <string name="phone">Teléfono</string>
     <string name="registrar">Registrar</string>
-    <string name="cancelar">Cancelar</string>
+    <string name="salir">Salir</string>
     <string name="asistencias">Asistencias</string>
     <string name="message_pass">Introducir contraseña para acceder a funciones de administrador.</string>
     <string name="acceder">acceder</string>
     <string name="pass">Contraseña</string>
     <string name="registrar_asistencia">Registrar asistencia</string>
+    <string name="eliminar">Eliminar</string>
 
 </resources>

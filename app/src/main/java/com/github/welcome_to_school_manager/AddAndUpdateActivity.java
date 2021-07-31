@@ -2,11 +2,15 @@ package com.github.welcome_to_school_manager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
@@ -21,7 +25,7 @@ import com.google.android.material.textfield.TextInputLayout;
 public class AddAndUpdateActivity extends AppCompatActivity implements Invitado {
     private TextInputLayout textInputLayout_numeroControl,textInputLayout_nombreCompleto,textInputLayout_Carrera,textInputLayout_telefono;
     private ArrayAdapter<String> arrayAdapter_carreras;
-    private MaterialButton button_add_update,button_cancelar;
+    private MaterialButton button_add_update,button_cancelar,button_delete;
     private String ERROR_ESTANDAR = "Campo requerido.";
     private FirestoreHelper firestoreHelper = new FirestoreHelper();
     private Alumno alumno;
@@ -38,6 +42,7 @@ public class AddAndUpdateActivity extends AppCompatActivity implements Invitado 
         textInputLayout_telefono = findViewById(R.id.textInputLayout_telefono);
         button_add_update = findViewById(R.id.button_add_update);
         button_cancelar = findViewById(R.id.button_Check);
+        button_delete = findViewById(R.id.button_delete);
 
         arrayAdapter_carreras  = new ArrayAdapter<>(AddAndUpdateActivity.this, R.layout.custom_spinner_item, StringHelper.CARRERAS);
         ((AutoCompleteTextView)textInputLayout_Carrera.getEditText()).setAdapter(arrayAdapter_carreras);
@@ -72,6 +77,7 @@ public class AddAndUpdateActivity extends AppCompatActivity implements Invitado 
         textInputLayout_nombreCompleto.getEditText().setEnabled(false);
         textInputLayout_Carrera.getEditText().setEnabled(false);
         textInputLayout_telefono.getEditText().setEnabled(false);
+        button_delete.setVisibility(View.GONE);
         button_add_update.setText("Actualizar");
         textInputLayout_Carrera.setHint("Carrera");
 
@@ -83,6 +89,7 @@ public class AddAndUpdateActivity extends AppCompatActivity implements Invitado 
                     if (numControl.length() == 8 && !numControl.isEmpty()) {
                         ProgressDialog dialog = ProgressDialog.show(AddAndUpdateActivity.this, "", "Buscando...", true);
                         firestoreHelper.getDataAlumno(AddAndUpdateActivity.this, numControl, dialog, AddAndUpdateActivity.this);
+                        ocultarTeclado();
                     } else {
                         textInputLayout_numeroControl.setError("Número de control inválido.");
                     }
@@ -96,6 +103,33 @@ public class AddAndUpdateActivity extends AppCompatActivity implements Invitado 
             @Override
             public void onClick(View v) {
                 updateAlumno();
+            }
+        });
+
+        button_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder dialogConfirm = new AlertDialog.Builder(AddAndUpdateActivity.this);
+                dialogConfirm.setTitle("Eliminar Alumno");
+                dialogConfirm.setMessage("¿Esta seguro de borrar a "+alumno.getNombre()+"?");
+                dialogConfirm.setCancelable(false);
+                dialogConfirm.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ProgressDialog progressDialog = ProgressDialog.show(AddAndUpdateActivity.this, "", "Eliminando...", true);
+                        firestoreHelper.validDataDeleteAlumno(progressDialog, AddAndUpdateActivity.this,textInputLayout_numeroControl.getEditText().getText().toString());
+                        cleanText();
+                        estandarUpdate();
+                        button_delete.setVisibility(View.GONE);
+                    }
+                });
+                dialogConfirm.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                dialogConfirm.show();
             }
         });
 
@@ -154,13 +188,12 @@ public class AddAndUpdateActivity extends AppCompatActivity implements Invitado 
         }else {
             Toast.makeText(AddAndUpdateActivity.this, "Debes llenar todos los campos requeridos.",Toast.LENGTH_SHORT).show();
         }
-
-
     }
 
     private void configurationADD(){
         this.setTitle("Agregar Alumno");
         textInputLayout_numeroControl.setEndIconVisible(false);
+        button_delete.setVisibility(View.GONE);
         button_add_update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -182,7 +215,7 @@ public class AddAndUpdateActivity extends AppCompatActivity implements Invitado 
         boolean bandera_telefono = false;
 
         String num_control = textInputLayout_numeroControl.getEditText().getText().toString();
-        String nombre = textInputLayout_nombreCompleto.getEditText().getText().toString();
+        String nombre = textInputLayout_nombreCompleto.getEditText().getText().toString().trim();
         String carrera = textInputLayout_Carrera.getEditText().getText().toString();
         String telefono = textInputLayout_telefono.getEditText().getText().toString();
 
@@ -219,6 +252,7 @@ public class AddAndUpdateActivity extends AppCompatActivity implements Invitado 
             ProgressDialog dialog = ProgressDialog.show(AddAndUpdateActivity.this, "", "Registrando...", true);
             firestoreHelper.validAddAlumno(dialog, num_control, nombre.toUpperCase(), carrera,telefono, AddAndUpdateActivity.this);
             cleanText();
+            ocultarTeclado();
         }else {
             Toast.makeText(AddAndUpdateActivity.this, "Debes llenar todos los campos requeridos.",Toast.LENGTH_SHORT).show();
         }
@@ -305,9 +339,11 @@ public class AddAndUpdateActivity extends AppCompatActivity implements Invitado 
             ((AutoCompleteTextView)textInputLayout_Carrera.getEditText()).setText(alumno.getCarrera(), false);
             textInputLayout_telefono.getEditText().setText(alumno.getTelefono());
             textInputLayout_telefono.setError(null);
+            button_delete.setVisibility(View.VISIBLE);
         }else{
           estandarUpdate();
           cleanText();
+          button_delete.setVisibility(View.GONE);
         }
     }
 
@@ -320,5 +356,13 @@ public class AddAndUpdateActivity extends AppCompatActivity implements Invitado 
         textInputLayout_Carrera.setError(null);
         textInputLayout_telefono.setError(null);
 
+    }
+
+    private void ocultarTeclado(){
+        View view = getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 }
