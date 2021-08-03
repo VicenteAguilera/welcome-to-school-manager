@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Welcometoschoolmanager" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.Welcometoschoolmanager" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <item name="colorPrimary">@color/blue_pantone_294</item>
         <item name="colorPrimaryVariant">@color/blue_pantone_294</item>
         <item name="colorOnPrimary">@color/white</item>

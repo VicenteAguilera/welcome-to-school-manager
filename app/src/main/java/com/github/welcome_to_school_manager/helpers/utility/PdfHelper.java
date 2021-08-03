@@ -134,7 +134,7 @@ public class PdfHelper {
 
             PdfPTable TABLA = new PdfPTable(5);
             TABLA.setWidthPercentage(100);
-            TABLA.setWidths(new float[]{(float) 12.5, (float) 30.0, (float) 32.5, (float) 15.0, (float) 10.0});
+            TABLA.setWidths(new float[]{(float) 12.5, (float) 30.0, (float) 27.5, (float) 15.0, (float) 15.0});
             TABLA.addCell(cellNumControl);
             TABLA.addCell(cellNombreEstudiante);
             TABLA.addCell(cellCarrera);
