@@ -140,7 +140,7 @@
 
             <com.google.android.material.button.MaterialButton
 
-                android:id="@+id/button_Check"
+                android:id="@+id/button_CheckSecurity"
                 style="@style/Widget.MaterialComponents.Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

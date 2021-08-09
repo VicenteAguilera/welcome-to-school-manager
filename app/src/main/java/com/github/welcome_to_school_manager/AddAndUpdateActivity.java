@@ -41,7 +41,7 @@ public class AddAndUpdateActivity extends AppCompatActivity implements Invitado 
         textInputLayout_Carrera = findViewById(R.id.textInputLayout_Carrera);
         textInputLayout_telefono = findViewById(R.id.textInputLayout_telefono);
         button_add_update = findViewById(R.id.button_add_update);
-        button_cancelar = findViewById(R.id.button_Check);
+        button_cancelar = findViewById(R.id.button_CheckSecurity);
         button_delete = findViewById(R.id.button_delete);
 
         arrayAdapter_carreras  = new ArrayAdapter<>(AddAndUpdateActivity.this, R.layout.custom_spinner_item, StringHelper.CARRERAS);

@@ -13,7 +13,7 @@
           android:orientation="vertical">
 
           <TextView
-              android:id="@+id/textView"
+              android:id="@+id/textView_MessageSecurity"
               android:textAlignment="center"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
@@ -75,7 +75,7 @@
               android:textSize="20sp" />
 
           <Button
-              android:id="@+id/button_Check"
+              android:id="@+id/button_CheckSecurity"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:layout_marginStart="32dp"

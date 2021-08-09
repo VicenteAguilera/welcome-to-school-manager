@@ -14,7 +14,7 @@
           android:orientation="vertical">
 
           <TextView
-              android:id="@+id/textView"
+              android:id="@+id/textView_MessageSecurity"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:layout_marginStart="32dp"
@@ -28,7 +28,7 @@
               android:textStyle="bold" />
 
           <com.google.android.material.textfield.TextInputLayout
-              android:id="@+id/editText_Password"
+              android:id="@+id/editText_PassSecurity"
               style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
@@ -49,7 +49,7 @@
           </com.google.android.material.textfield.TextInputLayout>
 
           <Button
-              android:id="@+id/button_Check"
+              android:id="@+id/button_CheckSecurity"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:layout_marginStart="32dp"

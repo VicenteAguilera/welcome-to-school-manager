@@ -14,37 +14,39 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Welcometoschoolmanager">
         <activity
-            android:name=".AddAndUpdateActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".ManagementActivity"/>
-        <activity
-            android:name=".GenerarListasActivity"
-            android:parentActivityName=".ManagementActivity"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".NewGenetationActivity"
-            android:parentActivityName=".ManagementActivity"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".ManagementActivity"
-            android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".MainActivity"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".AboutActivity"
-            android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".SplashActivity"
+            android:name=".SecurityActivity"
             android:screenOrientation="portrait">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".AddAndUpdateActivity"
+            android:parentActivityName=".ManagementActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".GenerarListasActivity"
+            android:parentActivityName=".ManagementActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NewGenetationActivity"
+            android:parentActivityName=".ManagementActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ManagementActivity"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AboutActivity"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SplashActivity"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".helpers.CaptureActivityPortrait"
             android:screenOrientation="portrait"

@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements Invitado, Message
 
         final AlertDialog dialogSearchAlumno = builder.create();
         dialogSearchAlumno.setCancelable(false);
-        Button button_Check = view.findViewById(R.id.button_Check);
+        Button button_Check = view.findViewById(R.id.button_CheckSecurity);
         /*Button buttonClose = view.findViewById(R.id.buttonClose);*/
 
         TextView textView_Ncontrol = view.findViewById(R.id.textView_Ncontrol);
@@ -244,8 +244,8 @@ public class MainActivity extends AppCompatActivity implements Invitado, Message
 
         final AlertDialog dialogPassword = builder.create();
         //dialogPassword.setCancelable(false);
-        Button buttonCheck = view.findViewById(R.id.button_Check);
-        TextInputLayout editTextPassword = view.findViewById(R.id.editText_Password);
+        Button buttonCheck = view.findViewById(R.id.button_CheckSecurity);
+        TextInputLayout editTextPassword = view.findViewById(R.id.editText_PassSecurity);
 
         buttonCheck.setOnClickListener(new View.OnClickListener() {
             @Override
