@@ -35,8 +35,8 @@ public class SecurityActivity extends AppCompatActivity implements Password, Mes
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_security);
 
-        button_CheckSecurity = findViewById(R.id.button_CheckSecurity);
-        editText_PassSecurity = findViewById(R.id.editText_PassSecurity);
+        button_CheckSecurity = findViewById(R.id.button_Security);
+        editText_PassSecurity = findViewById(R.id.editText_Security);
 
         sharedPreferencesHelper = new SharedPreferencesHelper(SecurityActivity.this);
         firebasePasswords = new FirebasePasswords();
@@ -85,7 +85,6 @@ public class SecurityActivity extends AppCompatActivity implements Password, Mes
             Map<String, Object> savePass = new HashMap<>();
             savePass.put("pass", pass);
             sharedPreferencesHelper.addPreferences(savePass);
-            Toast.makeText(SecurityActivity.this, getResources().getText(R.string.gestor_central) + "...", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, SplashActivity.class);
             startActivity(intent);
             finish();
