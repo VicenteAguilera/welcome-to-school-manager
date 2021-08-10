@@ -31,5 +31,6 @@
     <string name="registrar_asistencia">Registrar asistencia</string>
     <string name="eliminar">Eliminar</string>
     <string name="message_security">Estimado usuario, para poder hacer uso de la app es necesario que introduzca la contraseña que los administradores le han proporcionado.</string>
+    <string name="cerrar_sesion">Cerrar sesión</string>
 
 </resources>

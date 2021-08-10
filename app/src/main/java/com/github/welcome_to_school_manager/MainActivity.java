@@ -26,6 +26,7 @@ import com.github.welcome_to_school_manager.Interfaces.Password;
 import com.github.welcome_to_school_manager.helpers.CaptureActivityPortrait;
 import com.github.welcome_to_school_manager.helpers.models.Alumno;
 import com.github.welcome_to_school_manager.helpers.utility.Encriptacion;
+import com.github.welcome_to_school_manager.helpers.utility.SharedPreferencesHelper;
 import com.github.welcome_to_school_manager.repository.FirebasePasswords;
 import com.github.welcome_to_school_manager.repository.FirestoreHelper;
 import com.google.android.material.snackbar.Snackbar;
@@ -229,8 +230,10 @@ public class MainActivity extends AppCompatActivity implements Invitado, Message
             Toast.makeText(MainActivity.this, getResources().getText(R.string.acerca_de) + "...", Toast.LENGTH_SHORT).show();
             intent = new Intent(this, AboutActivity.class);
             startActivity(intent);
-        } else {
+        } else if (id == R.id.item_management) {
             showAlertDialogPassword();
+        } else if (id == R.id.item_cerrar_sesion) {
+
         }
         return super.onOptionsItemSelected(item);
     }

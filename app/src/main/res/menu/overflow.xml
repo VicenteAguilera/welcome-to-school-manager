@@ -8,6 +8,9 @@
     <item
         android:id="@+id/item_management"
         android:title="@string/gestor_central" />
+    <item
+        android:id="@+id/item_cerrar_sesion"
+        android:title="@string/cerrar_sesion" />
 
 
 
