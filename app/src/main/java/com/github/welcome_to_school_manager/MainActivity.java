@@ -3,9 +3,14 @@ package com.github.welcome_to_school_manager;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.FileUtils;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -17,6 +22,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -34,8 +40,11 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements Invitado, Messages, Password {
 
@@ -45,6 +54,8 @@ public class MainActivity extends AppCompatActivity implements Invitado, Message
     private LottieAnimationView animationView;
     private TextView textView_about;
     private String passIntoUser = "";
+    private SharedPreferencesHelper sharedPreferencesHelper;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements Invitado, Message
         animationView.setMinAndMaxFrame(193, 194);
         textView_about = findViewById(R.id.textView_about);
         textView_about.setText(textView_about.getText() + new SimpleDateFormat("yyyy").format(new Date()));
+        sharedPreferencesHelper = new SharedPreferencesHelper(MainActivity.this);
     }
 
     private void escanearQR() {
@@ -205,6 +217,7 @@ public class MainActivity extends AppCompatActivity implements Invitado, Message
             );
             alertDialogBuilder.show();
         }
+
     }
 
 
@@ -222,6 +235,7 @@ public class MainActivity extends AppCompatActivity implements Invitado, Message
         return true;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
@@ -233,7 +247,11 @@ public class MainActivity extends AppCompatActivity implements Invitado, Message
         } else if (id == R.id.item_management) {
             showAlertDialogPassword();
         } else if (id == R.id.item_cerrar_sesion) {
-
+            sharedPreferencesHelper.deletePreferences();
+            Toast.makeText(MainActivity.this, getResources().getText(R.string.sesion_cerrada) + "...", Toast.LENGTH_SHORT).show();
+            intent = new Intent(this, SecurityActivity.class);
+            startActivity(intent);
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }

@@ -26,9 +26,11 @@ public class SecurityActivity extends AppCompatActivity implements Password, Mes
 
     private Button button_CheckSecurity;
     private TextInputLayout editText_PassSecurity;
-    private SharedPreferencesHelper sharedPreferencesHelper;
+    static SharedPreferencesHelper sharedPreferencesHelper;
     private FirebasePasswords firebasePasswords;
     private String pass;
+    private SharedPreferences preferencias;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,7 @@ public class SecurityActivity extends AppCompatActivity implements Password, Mes
                 checkPassword();
             }
         });
+
     }
 
     @Override
@@ -54,7 +57,7 @@ public class SecurityActivity extends AppCompatActivity implements Password, Mes
         super.onStart();
         if (sharedPreferencesHelper.hasData()) {
             pass = sharedPreferencesHelper.getPreferences().get("pass").toString();
-            if(!pass.isEmpty()){
+            if (!pass.isEmpty()) {
                 Intent intent = new Intent(this, SplashActivity.class);
                 startActivity(intent);
                 finish();
