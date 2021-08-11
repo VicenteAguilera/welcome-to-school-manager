@@ -26,11 +26,9 @@ public class SecurityActivity extends AppCompatActivity implements Password, Mes
 
     private Button button_CheckSecurity;
     private TextInputLayout editText_PassSecurity;
-    static SharedPreferencesHelper sharedPreferencesHelper;
+    private SharedPreferencesHelper sharedPreferencesHelper;
     private FirebasePasswords firebasePasswords;
     private String pass;
-    private SharedPreferences preferencias;
-    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
